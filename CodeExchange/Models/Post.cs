@@ -14,6 +14,7 @@ namespace CodeExchange.Models
     public int Dislikes { get; set; }
     public string Title { get; set; }
     public string Content { get; set; }
+    public DateTime CreationDate { get; set; }
     // public string IpAddress { get; set; }
     // public bool isComment { get; set; }
 
