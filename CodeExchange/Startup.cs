@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-// using CodeExchange.Helpers;
-// using CodeExchange.Services;
 using CodeExchange.Models;
-// using CodeExchange.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace CodeExchange
 {
@@ -23,6 +21,8 @@ namespace CodeExchange
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+
+      services.AddMvc();
       // Section for JWT
       // services.AddCors();
       // services.AddControllers();
@@ -41,10 +41,6 @@ namespace CodeExchange
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
   	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
 
       // app.UseHttpsRedirection();
 
@@ -57,12 +53,23 @@ namespace CodeExchange
       // custom jwt auth middleware
       // app.UseMiddleware<JwtMiddleware>();
 
+      app.UseDeveloperExceptionPage();
+
+      app.UseAuthentication(); 
+
+
       app.UseRouting();
       app.UseAuthorization();
-
-      app.UseEndpoints(endpoints =>
+      app.UseEndpoints(routes =>
       {
-        endpoints.MapControllers();
+        routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+      });
+
+      app.UseStaticFiles();
+      
+      app.Run(async (context) =>
+      {
+        await context.Response.WriteAsync("Hello World!");
       });
     }
   }
