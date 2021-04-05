@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CodeExchange.Models
@@ -16,8 +17,8 @@ namespace CodeExchange.Models
     public int Rep { get; set; }
     public DateTime CreationDate { get; set; }
     public DateTime LastActive { get; set; }
-    public HashSet<int> Followers { get; set; } // Each user's Id
-    public HashSet<int> Following { get; get; }
+    public HashSet<int> UserFollowers { get; set; } // Each user's Id
+    public HashSet<int> UserFollowing { get; set; }
 
     public string IpAddress { get; set; }
 

@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameWorkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeExchange.Models
 {
@@ -11,7 +11,7 @@ namespace CodeExchange.Models
 
     public CodeExchangeContext(DbContextOptions options) : base(options) { }
 
-    protected override void OnConfiguring(DbContextOptionsBuild optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       optionsBuilder.UseLazyLoadingProxies();
     }

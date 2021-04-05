@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using CodeExchange.Helpers;
-using CodeExchange.Services;
+// using CodeExchange.Helpers;
+// using CodeExchange.Services;
 using CodeExchange.Models;
-using CodeExchange.Interfaces;
+// using CodeExchange.Interfaces;
 
 namespace CodeExchange
 {
@@ -33,7 +33,7 @@ namespace CodeExchange
       // // configure DI for application services
       // services.AddScoped<IUserService, UserService>();
 
-      services.AddDbContext<LocalBusinessContext>(opt =>
+      services.AddDbContext<CodeExchangeContext>(opt =>
         opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
       services.AddControllers();
     }

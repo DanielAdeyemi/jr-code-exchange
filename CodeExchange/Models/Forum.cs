@@ -11,7 +11,7 @@ namespace CodeExchange.Models
 
     public int ForumId { get; set; }
     public string Name { get; set; }
-    public HashSet<int> Followers { get; set; }
+    public HashSet<int> ForumFollowers { get; set; }
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
   }
 }
