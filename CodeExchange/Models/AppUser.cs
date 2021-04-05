@@ -17,8 +17,8 @@ namespace CodeExchange.Models
     public int Rep { get; set; }
     public DateTime CreationDate { get; set; }
     public DateTime LastActive { get; set; }
-    public HashSet<int> UserFollowers { get; set; } // Each user's Id
-    public HashSet<int> UserFollowing { get; set; }
+    public virtual List<AppUser> UserFollowers { get; set; } // Each user's Id
+    public virtual List<AppUser> UserFollowing { get; set; }
 
     public string IpAddress { get; set; }
 
