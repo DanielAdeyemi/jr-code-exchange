@@ -19,8 +19,12 @@ namespace CodeExchange.Models
     public DateTime LastActive { get; set; }
     public virtual List<AppUser> UserFollowers { get; set; } // Each user's Id
     public virtual List<AppUser> UserFollowing { get; set; }
+    public virtual List<Post> Likes { get; set; }
+    public virtual List<Post> Dislikes { get; set; }
 
     public string IpAddress { get; set; }
+
+    public virtual ApplicationUser User { get; set; }
 
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
   }

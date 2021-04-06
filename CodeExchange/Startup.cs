@@ -9,50 +9,45 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CodeExchange
 {
-	public class Startup
+  public class Startup
   {
-    public Startup(IConfiguration configuration)
-  	{
-      Configuration = configuration;
+    public Startup(IWebHostEnvironment env)
+    {
+      var builder = new ConfigurationBuilder()
+        .SetBasePath(env.ContentRootPath)
+        .AddJsonFile("appsettings.json");
+      Configuration = builder.Build();
     }
 
-    public IConfiguration Configuration { get; }
+    public IConfigurationRoot Configuration { get; set; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-
       services.AddMvc();
-      // Section for JWT
-      // services.AddCors();
-      // services.AddControllers();
 
-      // // configure strongly typed settings object
-      // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+      services.AddEntityFrameworkMySql()
+        .AddDbContext<CodeExchangeContext>(options => options
+        .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+        
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<CodeExchangeContext>()
+        .AddDefaultTokenProviders();
 
-      // // configure DI for application services
-      // services.AddScoped<IUserService, UserService>();
+      services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequiredUniqueChars = 0;
 
-      services.AddDbContext<CodeExchangeContext>(opt =>
-        opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
-      services.AddControllers();
+        options.User.RequireUniqueEmail = true;
+      });
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-  	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app)
     {
-
-      // app.UseHttpsRedirection();
-
-      // global cors policy
-      // app.UseCors(x => x
-      //   .AllowAnyOrigin()
-      //   .AllowAnyMethod()
-      //   .AllowAnyHeader());
-
-      // custom jwt auth middleware
-      // app.UseMiddleware<JwtMiddleware>();
-
       app.UseDeveloperExceptionPage();
 
       app.UseAuthentication(); 
