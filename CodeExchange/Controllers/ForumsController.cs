@@ -16,7 +16,7 @@ namespace CodeExchange.Controllers
   {
     private readonly CodeExchangeContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-    public AppUsersController(UserManager<ApplicationUser> userManager, CodeExchangeContext db)
+    public ForumsController(UserManager<ApplicationUser> userManager, CodeExchangeContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -24,7 +24,62 @@ namespace CodeExchange.Controllers
 
     public ActionResult Index()
     {
+      ICollection<Forum> model = _db.Forums.ToList();
+      return View(model);
+    }
+    
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+      var thisForum = _db.Forums
+        .Include(forum => forum.JoinEntities)
+        .ThenInclude(join => join.Post)
+        .FirstOrDefault(forum => forum.ForumId == id);
+      return View(thisForum);
+    }
+    [HttpGet]
+    public ActionResult Create()
+    {
+      return View();
+    }
+    [HttpPost]
+    public ActionResult Create(Forum forum) {
+      _db.Forums.Add(forum);
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [HttpGet]
+    public ActionResult Edit(int id)
+    {
+      var thisForum = _db.Forums.FirstOrDefault(forum => forum.ForumId == id);
+      return View(thisForum);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Forum forum)
+    {
+      _db.Entry(forum).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ActionResult Archive(int id)
+    {
+      var thisForum = _db.Forums.FirstOrDefault(forum => forum.ForumId == id);
+      return View(thisForum);
+    }
+
+    [HttpPost]
+    public ActionResult Archive(Forum forum)
+    {
+      forum.IsVisible = false;
+      _db.Entry(forum).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+
   }
 }

@@ -3,14 +3,16 @@ using System;
 using CodeExchange.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeExchange.Migrations
 {
     [DbContext(typeof(CodeExchangeContext))]
-    partial class CodeExchangeContextModelSnapshot : ModelSnapshot
+    [Migration("20210406215417_UpdateProps")]
+    partial class UpdateProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,26 +49,14 @@ namespace CodeExchange.Migrations
                     b.Property<int?>("ForumId")
                         .HasColumnType("int");
 
-                    b.Property<string>("GitHub")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsVisible")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<DateTime>("LastActive")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("LinkedIn")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Password")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Rep")
                         .HasColumnType("int");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
@@ -167,9 +157,6 @@ namespace CodeExchange.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsVisible")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -206,9 +193,6 @@ namespace CodeExchange.Migrations
 
                     b.Property<int>("Dislikes")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsVisible")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Likes")
                         .HasColumnType("int");

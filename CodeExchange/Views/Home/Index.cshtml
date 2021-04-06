@@ -2,7 +2,25 @@
   Layout = "_Layout";
 }
 
+@using System.Security.Claims
 @using CodeExchange.Models;
 @model List<CodeExchange.Models.Forum>
 
-<h1> looks like everything loaded OK </h1>
+@* <h1> looks like everything loaded OK </h1>
+@if (User.Identity.Authenticated)
+{
+
+} 
+else
+{
+  @foreach(Post post in @ViewBag.postByPopularity)
+  {
+    <div class="tile is-vertical">
+      <article class="tile is-child notification is-info">
+        <p class="title">@post.Title</p>
+        <p class="subtitle">@Model.Forum.Name</p>
+        <p class="content">@post.Content</p>
+      </article>
+    </div>
+  }
+} *@

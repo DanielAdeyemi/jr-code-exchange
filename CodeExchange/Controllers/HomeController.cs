@@ -15,6 +15,7 @@ namespace CodeExchange.Controllers
   public class HomeController : Controller
   {
     private readonly CodeExchangeContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
     public HomeController(UserManager<ApplicationUser> userManager, CodeExchangeContext db)
     {
       _userManager = userManager;
@@ -27,7 +28,7 @@ namespace CodeExchange.Controllers
       // Pass both into view. Forums will be integrated into sidebar 
       ICollection<Forum> model = _db.Forums.ToList();
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
-      ViewBag.postByPopularity = _db.
+      ViewBag.postByPopularity = _db.Posts.ToList().OrderByDescending(e => e.Likes);
 
       // (Implement on CSHTML) =
       // Scrolling list of most popular posts (stretch)

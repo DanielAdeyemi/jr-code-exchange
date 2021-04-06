@@ -1,13 +1,23 @@
+@using System.Security.Claims
+@using CodeExchange.Models;
+
 <div class="block" id="nav-div">
   <nav class="navbar is-fixed-top is-dark">
     <div class="navbar-brand">
-      <h1 class="title is-4 has-text-white ml-5 mt-2">codeExchange</h1>
+      <h1 class="title is-4 has-text-white ml-5 mt-2"><span class="has-text-primary">Jr</span>CodeExchange</h1>
     </div>
-    <div class="navbar-menu navbar-end">
-      <a class="nav-item has-text-white mr-4 mt-1 button is-info is-outlined">Login @* @Html.ActionLink("Login") *@</a>
-      <a class="nav-item has-text-white mr-4 mt-1 button is-info">Sign Up @* @Html.ActionLink("Signup") *@</a>
-      <!-- If user is logged in -->
-      <a class="nav-item final-nav has-text-white mr-4 mt-1 button has-background-primary">Account @*@Html.ActionLink("Account") *@</a>
+    <div class="navbar-menu navbar-end is-active">
+      @if (User.Identity.IsAuthenticated)
+      {
+        <p> Hi, @Model.Username</p>
+        <button class="nav-item final-nav has-text-white mr-4 mt-1 button has-background-primary">@Html.ActionLink("Log Off", "Index", "Home")</button>
+      }
+      else
+      {
+        <p> Welcome, Guest </p>
+        <button class="nav-item has-text-white mr-4 mt-1 button is-info is-outlined">@Html.ActionLink("Login", "Login", "Account")</button>
+        <button class="nav-item has-text-white mr-4 mt-1 button is-info">@Html.ActionLink("Sign Up", "Register", "Account") </button>
+      }
     </div>
   </nav>
 </div>

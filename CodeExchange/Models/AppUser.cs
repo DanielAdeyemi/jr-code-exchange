@@ -18,7 +18,12 @@ namespace CodeExchange.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public string Role { get; set; }
+        public string LinkedIn { get; set; }
+        public string GitHub { get; set; }
         public int Rep { get; set; }
+        public bool IsVisible { get; set; }
+
         public DateTime CreationDate { get; set; }
         public DateTime LastActive { get; set; }
         public virtual List<AppUser> UserFollowers { get; set; } // Each user's Id
@@ -31,14 +36,14 @@ namespace CodeExchange.Models
         public virtual ApplicationUser User { get; set; }  
         public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
       
-        public async Task<Post> LikePost(Post post, CodeExchangeContext UserDb)
+        public async Task<AppUser> LikePost(Post post, CodeExchangeContext UsersDb)
         {
             if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
             {
                 this.Likes.Add(post);
                 post.Likes++;
                 //Target user and add rep
-                var targetUser = UserDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
                 if (targetUser == null)
                 {
                     return targetUser;
@@ -46,21 +51,21 @@ namespace CodeExchange.Models
                 else
                 {
                     targetUser.Rep++;
-                    await UserDb.SaveChangesAsync();
+                    await UsersDb.SaveChangesAsync();
                     return targetUser;
                 }
             }
             return null;
         }
       
-        public async Task<Post> DislikePost(Post post, CodeExchangeContext UsersDb)
+        public async Task<AppUser> DislikePost(Post post, CodeExchangeContext UsersDb)
         {
             if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
             {
                 this.Dislikes.Add(post);
                 post.Dislikes++;
                 //Target user and decrement rep
-                var targetUser = UserDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
                 if (targetUser == null)
                 {
                     return null;
@@ -68,14 +73,14 @@ namespace CodeExchange.Models
                 else
                 {
                     targetUser.Rep--;
-                    await UserDb.SaveChangesAsync();
+                    await UsersDb.SaveChangesAsync();
                     return targetUser;
                 }
             }
             return null;
         }
       
-        public async Task<Post> RemoveLike(Post post, CodeExchangeContext UsersDb)
+        public async Task<AppUser> RemoveLike(Post post, CodeExchangeContext UsersDb)
         {
             if (this.Likes.Contains(post) == true)
             {
