@@ -47,11 +47,11 @@ namespace CodeExchange.Controllers
     }
     
     // Might need the signout function.
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    [HttpPost]
+    public ActionResult DeleteConfirmed(AppUser appUser)
     {
-      var thisUserApp = _db.AppUsers.FirstOrDefault( u => u.AppUserId == id);
-      _db.AppUsers.Remove(thisUserApp);
+      appUser.IsVisible = false;
+      _db.Entry(appUser).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }

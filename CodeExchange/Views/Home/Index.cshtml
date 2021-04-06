@@ -6,20 +6,33 @@
 @using CodeExchange.Models;
 @model List<CodeExchange.Models.Forum>
 
-@* <h1> looks like everything loaded OK </h1>
+@* 
 @if (User.Identity.Authenticated)
 {
-
+  @foreach(Post post in Model.Forum)
+  {
+    <div class="tile is-vertical">
+      <article class="tile notification">
+        <p class="title">@post.Title</p>
+        <p class="subtitle">@Model.Forum.Name</p>
+        <p class="content">@post.Content</p>
+        <p class="subtitle">@post.Likes</p>
+        <p class="subtitle">@post.Dislikes</p>
+      </article>
+    </div>
+  }
 } 
 else
 {
   @foreach(Post post in @ViewBag.postByPopularity)
   {
     <div class="tile is-vertical">
-      <article class="tile is-child notification is-info">
+      <article class="tile notification">
         <p class="title">@post.Title</p>
         <p class="subtitle">@Model.Forum.Name</p>
         <p class="content">@post.Content</p>
+        <p class="subtitle">@post.Likes</p>
+        <p class="subtitle">@post.Dislikes</p>
       </article>
     </div>
   }

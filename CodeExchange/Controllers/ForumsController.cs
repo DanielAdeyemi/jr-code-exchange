@@ -11,7 +11,7 @@ using CodeExchange.Models;
 
 namespace CodeExchange.Controllers
 {
-  [Authorize]
+  [Authorize(Roles = "Uncle")]
   public class ForumsController : Controller
   {
     private readonly CodeExchangeContext _db;
@@ -22,12 +22,14 @@ namespace CodeExchange.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       ICollection<Forum> model = _db.Forums.ToList();
       return View(model);
     }
     
+    [Authorize(Roles = "User")]
     [HttpGet]
     public ActionResult Details(int id)
     {
@@ -37,11 +39,13 @@ namespace CodeExchange.Controllers
         .FirstOrDefault(forum => forum.ForumId == id);
       return View(thisForum);
     }
+
     [HttpGet]
     public ActionResult Create()
     {
       return View();
     }
+
     [HttpPost]
     public ActionResult Create(Forum forum) {
       _db.Forums.Add(forum);
@@ -79,7 +83,5 @@ namespace CodeExchange.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
-
   }
 }
