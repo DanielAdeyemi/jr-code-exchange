@@ -41,6 +41,8 @@ namespace CodeExchange
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
+
+        options.User.RequireUniqueEmail = true;
       });
     }
 
