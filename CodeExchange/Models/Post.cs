@@ -18,6 +18,7 @@ namespace CodeExchange.Models
     public DateTime CreationDate { get; set; }
     // public string IpAddress { get; set; }
     // public bool isComment { get; set; }
+    public int CreatorId { get; set; }
 
   public virtual ApplicationUser User { get; set; }
     public virtual List<Post> Comments { get; set; }
