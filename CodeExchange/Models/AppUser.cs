@@ -26,9 +26,11 @@ namespace CodeExchange.Models
         public virtual List<Post> Likes { get; set; } //List of user likes & dislikes -CB
         public virtual List<Post> Dislikes { get; set; }
 
-        public string IpAddress { get; set; }
 
+        // public string IpAddress { get; set; }
+        public virtual ApplicationUser User { get; set; }  
         public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
+      
         public async Task<Post> LikePost(Post post, CodeExchangeContext UserDb)
         {
             if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
@@ -47,10 +49,10 @@ namespace CodeExchange.Models
                     await UserDb.SaveChangesAsync();
                     return targetUser;
                 }
-
             }
             return null;
         }
+      
         public async Task<Post> DislikePost(Post post, CodeExchangeContext UsersDb)
         {
             if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
@@ -72,6 +74,7 @@ namespace CodeExchange.Models
             }
             return null;
         }
+      
         public async Task<Post> RemoveLike(Post post, CodeExchangeContext UsersDb)
         {
             if (this.Likes.Contains(post) == true)
