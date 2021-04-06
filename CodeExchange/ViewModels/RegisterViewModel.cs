@@ -10,11 +10,11 @@ namespace CodeExchange.ViewModels
     
     public string Email { get; set; }
 
-    [Required]
-    [DataType(DataType.Custom)]
-    [Display(Name = "Username")]
+    // [Required]
+    // [DataType(DataType.Custom)]
+    // [Display(Name = "Username")]
     
-    public string Username { get; set; }
+    // public string Username { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
