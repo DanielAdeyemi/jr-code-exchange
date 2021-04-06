@@ -22,6 +22,8 @@ namespace CodeExchange.Models
 
     public string IpAddress { get; set; }
 
+    public virtual ApplicationUser User { get; set; }
+
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
   }
 }
