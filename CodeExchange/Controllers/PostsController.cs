@@ -62,10 +62,17 @@ namespace CodeExchange.Controllers
     }
 
     [HttpGet]
-    public ActionResult Edit(int id)
+    public ActionResult Edit(int id, int appUserId)
     {
+      ViewBag.isOwner = false;
       var thisPost = _db.Posts.FirstOrDefault(post => post.PostId == id);
-      return View(thisPost);
+      if(thisPost.CreatorId == appUserId)
+      {
+        ViewBag.isOwner = true;
+        return View(thisPost);
+      }
+
+      return RedirectToAction("Index");
     }
 
     [HttpPost]
@@ -77,10 +84,17 @@ namespace CodeExchange.Controllers
     }
 
     [HttpGet]
-    public ActionResult Archive(int id)
+    public ActionResult Archive(int id, int appUserId)
     {
-      var thisForum = _db.Forums.FirstOrDefault(forum => forum.ForumId == id);
-      return View(thisForum);
+      ViewBag.isOwner = false;
+      var thisPost = _db.Posts.FirstOrDefault(post => post.PostId == id);
+
+      if(thisPost.CreatorId == appUserId)
+      {
+        ViewBag.isOwner = true;
+        return View(thisPost);
+      }
+      return RedirectToAction("Index");
     }
 
     [HttpPost]
