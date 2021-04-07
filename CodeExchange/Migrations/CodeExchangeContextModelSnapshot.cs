@@ -50,9 +50,6 @@ namespace CodeExchange.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
@@ -225,7 +222,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 1,
                             Content = "Python dookie",
-                            CreationDate = new DateTime(2021, 4, 7, 18, 34, 31, 530, DateTimeKind.Local).AddTicks(4040),
+                            CreationDate = new DateTime(2021, 4, 7, 19, 25, 57, 490, DateTimeKind.Local).AddTicks(8690),
                             CreatorId = 1,
                             Dislikes = 0,
                             IsVisible = true,
@@ -236,7 +233,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 2,
                             Content = "Swift dookie",
-                            CreationDate = new DateTime(2021, 4, 7, 13, 34, 31, 530, DateTimeKind.Local).AddTicks(4890),
+                            CreationDate = new DateTime(2021, 4, 7, 14, 25, 57, 490, DateTimeKind.Local).AddTicks(9430),
                             CreatorId = 2,
                             Dislikes = 0,
                             IsVisible = true,
@@ -247,7 +244,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 3,
                             Content = "C# dookie",
-                            CreationDate = new DateTime(2021, 4, 7, 13, 34, 31, 530, DateTimeKind.Local).AddTicks(4900),
+                            CreationDate = new DateTime(2021, 4, 7, 14, 25, 57, 490, DateTimeKind.Local).AddTicks(9440),
                             CreatorId = 3,
                             Dislikes = 0,
                             IsVisible = true,
@@ -258,7 +255,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 4,
                             Content = "Java dookie",
-                            CreationDate = new DateTime(2021, 4, 7, 13, 34, 31, 530, DateTimeKind.Local).AddTicks(4900),
+                            CreationDate = new DateTime(2021, 4, 7, 14, 25, 57, 490, DateTimeKind.Local).AddTicks(9440),
                             CreatorId = 4,
                             Dislikes = 0,
                             IsVisible = true,
@@ -269,7 +266,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 5,
                             Content = "JavaScript dookie",
-                            CreationDate = new DateTime(2021, 4, 7, 13, 34, 31, 530, DateTimeKind.Local).AddTicks(4910),
+                            CreationDate = new DateTime(2021, 4, 7, 14, 25, 57, 490, DateTimeKind.Local).AddTicks(9450),
                             CreatorId = 1,
                             Dislikes = 10,
                             IsVisible = true,

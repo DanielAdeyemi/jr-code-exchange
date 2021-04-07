@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using CodeExchange.ViewModels;
 using CodeExchange.Models;
+using System.Linq;
 using System;
 
 namespace CodeExchange.Models
@@ -34,11 +35,14 @@ namespace CodeExchange.Models
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       ViewBag.count = 0;
-      var user = new AppUser { UserName = model.Email, Email = model.Email, CreationDate = DateTime.Now, DisplayName = model.Username};
+
+      var user = new AppUser { UserName = model.Username, Email = model.Email, CreationDate = DateTime.Now};
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if(result.Succeeded)
       {
         ViewBag.count = 0;
+        Console.WriteLine("ACCOUNT ID: " + user.Id);
+
         return RedirectToAction("Login");
       }
       else
@@ -56,9 +60,11 @@ namespace CodeExchange.Models
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
     {
-      Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+      Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: true, lockoutOnFailure: false);
+
       if(result.Succeeded)
       {
+        Console.WriteLine("THIS USER's ID: " + model.Username);
         return RedirectToAction("Index", "Home");
       }
       else
