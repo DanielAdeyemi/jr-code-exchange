@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using CodeExchange.ViewModels;
 using CodeExchange.Models;
+using System;
 
 namespace CodeExchange.Models
 {
@@ -19,6 +20,11 @@ namespace CodeExchange.Models
       _db = db;
     }
 
+    public ActionResult Index()
+    {
+      return View();
+    }
+
     public IActionResult Register()
     {
       return View();
@@ -28,7 +34,7 @@ namespace CodeExchange.Models
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       ViewBag.count = 0;
-      var user = new AppUser { UserName = model.Email };
+      var user = new AppUser { UserName = model.Username, Email = model.Email, CreationDate = DateTime.Now };
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if(result.Succeeded)
       {
@@ -53,7 +59,7 @@ namespace CodeExchange.Models
       Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
       if(result.Succeeded)
       {
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
       }
       else
       {

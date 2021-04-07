@@ -13,6 +13,8 @@ namespace CodeExchange.Models
         public AppUser()
         {
             this.JoinEntities = new HashSet<AppUserForumPost>();
+            this.Role = "User";
+            this.IsVisible = true;
         }
 
         public int AppUserId { get; set; }

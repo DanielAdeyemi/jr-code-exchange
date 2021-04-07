@@ -33,7 +33,7 @@ namespace CodeExchange.Models
       return 24;
     }
 
-    return DateTime.Now.Hour - this.CreationDate.Hour;
+    return this.CreationDate.Hour - DateTime.Now.Hour;
   }
   }
 }
