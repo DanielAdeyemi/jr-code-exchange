@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CodeExchange.Models
 {
@@ -27,21 +28,24 @@ namespace CodeExchange.Models
     public virtual List<Post> Comments { get; set; }
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
 
-    public int Age(){
+    public string Age()
+    {
     // 24hr+
     if(DateTime.Now.DayOfYear < this.CreationDate.DayOfYear)
     {
-      return 24;
+      return "Over 24 hrs";
     }
-
-    return DateTime.Now.Hour - this.CreationDate.Hour;
-  }
+    else if(DateTime.Now.Hour == this.CreationDate.Hour) {
+      return "New";
+    }
+    return Math.Abs(this.CreationDate.Hour - DateTime.Now.Hour).ToString() + "hrs";
+    }
     // Generate preview up to 35 characters. If preview[35] != whitespace then keep building string up to 100
-  public void GeneratePreview() {
-    if(this.Content.Length > 35 && this.Content.Length < 100) {
-    this.Preview = this.Content.Substring(0, 35);
-    if (this.Preview[35] != ' '){
-      for(int i = 35; i < 100; i++) {
+  public async Task<String> GeneratePreview() {
+    if(this.Content.Length > 200 && this.Content.Length < 1000) {
+    this.Preview = this.Content.Substring(0, 200);
+    if (this.Preview[199] != ' '){
+      for(int i = 200; i < 1000; i++) {
         if(this.Content[i] == ' ') {
           break;
         }
@@ -49,9 +53,11 @@ namespace CodeExchange.Models
       }
     }
     }
-    else if(this.Content.Length < 35) {
+    else if(this.Content.Length < 200) {
     this.Preview = this.Content;
+    return this.Preview;
     }
+    return this.Preview;
   }
   }
 }

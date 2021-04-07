@@ -22,14 +22,21 @@ namespace CodeExchange.Controllers
       _db = db;
     }
     [AllowAnonymous]
-    public ActionResult Index()
+    public async Task <ActionResult> Index()
     {
       // Grab _Db of forums and Include Posts sorted by DateTime
       // Pass both into view. Forums will be integrated into sidebar 
       ICollection<Forum> model = _db.Forums.ToList();
+      foreach(Post post in _db.Posts) {
+        await post.GeneratePreview();
+        System.Console.WriteLine(post.Content);
+        System.Console.WriteLine(post.Preview);
+         _db.Entry(post).State = EntityState.Modified;
+      }
+      _db.SaveChanges();
+
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
       ViewBag.postByPopularity = _db.Posts.ToList().OrderByDescending(e => e.Likes);
-      
       // (Implement on CSHTML) =
       // Scrolling list of most popular posts (stretch)
       // OR button at button to load next 10 most popular posts
