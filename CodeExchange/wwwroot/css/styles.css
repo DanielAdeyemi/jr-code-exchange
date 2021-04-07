@@ -1,1 +1,20 @@
 /* Navbar Styling */
+button>a {
+  color: #FFF;
+}
+
+h1>a{
+  color: #FFF;
+}
+
+span>a{
+  color: #00d1b2;
+}
+
+span>a:hover {
+  color: #00d1b2;
+}
+
+h1>a:hover{
+  color: #FFF;
+}

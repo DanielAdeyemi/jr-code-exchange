@@ -29,7 +29,7 @@ namespace CodeExchange.Controllers
       ICollection<Forum> model = _db.Forums.ToList();
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
       ViewBag.postByPopularity = _db.Posts.ToList().OrderByDescending(e => e.Likes);
-
+      
       // (Implement on CSHTML) =
       // Scrolling list of most popular posts (stretch)
       // OR button at button to load next 10 most popular posts

@@ -8,6 +8,7 @@ namespace CodeExchange.Models
     public Post()
     {
       this.JoinEntities = new HashSet<AppUserForumPost>();
+      this.CreationDate = DateTime.Now;
     }
 
     public int PostId { get; set; }
@@ -21,8 +22,18 @@ namespace CodeExchange.Models
     public int CreatorId { get; set; }
     public bool IsVisible { get; set; }
 
-  public virtual ApplicationUser User { get; set; }
+    public virtual ApplicationUser User { get; set; }
     public virtual List<Post> Comments { get; set; }
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
+
+    public int Age(){
+    // 24hr+
+    if(DateTime.Now.DayOfYear < this.CreationDate.DayOfYear)
+    {
+      return 24;
+    }
+
+    return DateTime.Now.Hour - this.CreationDate.Hour;
+  }
   }
 }

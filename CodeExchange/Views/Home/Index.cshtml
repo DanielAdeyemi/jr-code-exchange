@@ -2,38 +2,24 @@
   Layout = "_Layout";
 }
 
-@using System.Security.Claims
 @using CodeExchange.Models;
 @model List<CodeExchange.Models.Forum>
 
-@* 
-@if (User.Identity.Authenticated)
+@foreach(Post post in @ViewBag.postByPopularity)
 {
-  @foreach(Post post in Model.Forum)
-  {
-    <div class="tile is-vertical">
+  <div class="tile is-ancestor is-vertical is-10">
+    <div class="tile is-parent">
       <article class="tile notification">
         <p class="title">@post.Title</p>
-        <p class="subtitle">@Model.Forum.Name</p>
-        <p class="content">@post.Content</p>
+        @* <p class="subtitle">@post.Forum.Name</p> *@
         <p class="subtitle">@post.Likes</p>
         <p class="subtitle">@post.Dislikes</p>
+        <p class="subtitle">@post.Age()</p> <span>Hr</span>
       </article>
     </div>
-  }
-} 
-else
-{
-  @foreach(Post post in @ViewBag.postByPopularity)
-  {
-    <div class="tile is-vertical">
-      <article class="tile notification">
-        <p class="title">@post.Title</p>
-        <p class="subtitle">@Model.Forum.Name</p>
-        <p class="content">@post.Content</p>
-        <p class="subtitle">@post.Likes</p>
-        <p class="subtitle">@post.Dislikes</p>
-      </article>
-    </div>
-  }
-}*@
+  </div>
+}
+
+@* <p> @ViewBag.postByDate.Length() </p>
+<p> @ViewBag.postByPopularity.Length() </p>
+<p> @Model.Count() </p> *@

@@ -3,14 +3,16 @@ using System;
 using CodeExchange.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeExchange.Migrations
 {
     [DbContext(typeof(CodeExchangeContext))]
-    partial class CodeExchangeContextModelSnapshot : ModelSnapshot
+    [Migration("20210407000718_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,7 +241,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 1,
                             Content = "Python dookie",
-                            CreationDate = new DateTime(2021, 4, 6, 22, 23, 2, 599, DateTimeKind.Local).AddTicks(8656),
+                            CreationDate = new DateTime(2021, 4, 6, 17, 7, 18, 486, DateTimeKind.Local).AddTicks(4875),
                             CreatorId = 1,
                             Dislikes = 0,
                             IsVisible = true,
@@ -250,7 +252,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 2,
                             Content = "Swift dookie",
-                            CreationDate = new DateTime(2021, 4, 6, 17, 23, 2, 599, DateTimeKind.Local).AddTicks(9029),
+                            CreationDate = new DateTime(2021, 4, 6, 17, 7, 18, 486, DateTimeKind.Local).AddTicks(5496),
                             CreatorId = 2,
                             Dislikes = 0,
                             IsVisible = true,
@@ -261,7 +263,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 3,
                             Content = "C# dookie",
-                            CreationDate = new DateTime(2021, 4, 6, 17, 23, 2, 599, DateTimeKind.Local).AddTicks(9034),
+                            CreationDate = new DateTime(2021, 4, 6, 17, 7, 18, 486, DateTimeKind.Local).AddTicks(5508),
                             CreatorId = 3,
                             Dislikes = 0,
                             IsVisible = true,
@@ -272,7 +274,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 4,
                             Content = "Java dookie",
-                            CreationDate = new DateTime(2021, 4, 6, 17, 23, 2, 599, DateTimeKind.Local).AddTicks(9040),
+                            CreationDate = new DateTime(2021, 4, 6, 17, 7, 18, 486, DateTimeKind.Local).AddTicks(5511),
                             CreatorId = 4,
                             Dislikes = 0,
                             IsVisible = true,
@@ -283,7 +285,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 5,
                             Content = "JavaScript dookie",
-                            CreationDate = new DateTime(2021, 4, 6, 17, 23, 2, 599, DateTimeKind.Local).AddTicks(9045),
+                            CreationDate = new DateTime(2021, 4, 6, 17, 7, 18, 486, DateTimeKind.Local).AddTicks(5514),
                             CreatorId = 1,
                             Dislikes = 10,
                             IsVisible = true,
