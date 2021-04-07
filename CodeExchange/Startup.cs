@@ -42,7 +42,7 @@ namespace CodeExchange
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
 
-        options.User.RequireUniqueEmail = true;
+        // options.User.RequireUniqueEmail = true;
       });
     }
 
