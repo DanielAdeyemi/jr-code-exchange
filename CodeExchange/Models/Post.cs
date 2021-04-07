@@ -16,6 +16,7 @@ namespace CodeExchange.Models
     public int Dislikes { get; set; }
     public string Title { get; set; }
     public string Content { get; set; }
+    public string Preview { get; set; }
     public DateTime CreationDate { get; set; }
     // public string IpAddress { get; set; }
     // public bool isComment { get; set; }
@@ -34,6 +35,23 @@ namespace CodeExchange.Models
     }
 
     return DateTime.Now.Hour - this.CreationDate.Hour;
+  }
+    // Generate preview up to 35 characters. If preview[35] != whitespace then keep building string up to 100
+  public void GeneratePreview() {
+    if(this.Content.Length > 35 && this.Content.Length < 100) {
+    this.Preview = this.Content.Substring(0, 35);
+    if (this.Preview[35] != ' '){
+      for(int i = 35; i < 100; i++) {
+        if(this.Content[i] == ' ') {
+          break;
+        }
+        this.Preview += this.Content[i];
+      }
+    }
+    }
+    else if(this.Content.Length < 35) {
+    this.Preview = this.Content;
+    }
   }
   }
 }
