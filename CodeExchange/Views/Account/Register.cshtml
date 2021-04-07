@@ -8,6 +8,13 @@
 
 <h2>Register a new user</h2>
 <hr />
+
+@if(ViewBag.count > 0)
+{
+  <p> Email is unavailable. Please try again with a different email! </p>
+}
+
+
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
     @Html.LabelFor(user => user.Email)

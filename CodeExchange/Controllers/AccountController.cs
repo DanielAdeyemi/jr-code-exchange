@@ -27,14 +27,17 @@ namespace CodeExchange.Models
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
+      ViewBag.count = 0;
       var user = new ApplicationUser { UserName = model.Email };
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if(result.Succeeded)
       {
+        ViewBag.count = 0;
         return RedirectToAction("Login");
       }
       else
       {
+        ViewBag.count++;
         return View();
       }
     }
