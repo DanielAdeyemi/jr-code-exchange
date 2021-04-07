@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 namespace CodeExchange.Models
 {
-  public class CodeExchangeContext : DbContext
+  public class CodeExchangeContext : IdentityDbContext<ApplicationUser>
   {
     public virtual DbSet<AppUser> AppUsers { get; set; }
     public DbSet<Forum> Forums { get; set; }
