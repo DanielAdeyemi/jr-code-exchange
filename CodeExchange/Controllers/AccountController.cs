@@ -38,11 +38,21 @@ namespace CodeExchange.Models
 
       var user = new AppUser { UserName = model.Username, Email = model.Email, CreationDate = DateTime.Now};
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+
+      var userList = _db.AppUsers.ToList();
+      var descendingList = userList.OrderByDescending(u => u.AppUserId).ToList();
+      int lastUserId = descendingList[0].AppUserId;
+
       if(result.Succeeded)
       {
         ViewBag.count = 0;
-        Console.WriteLine("ACCOUNT ID: " + user.Id);
 
+        user.AppUserId = lastUserId + 1;
+        Console.WriteLine("ID GRABBED: " + lastUserId);
+        Console.WriteLine("ACCOUNT ID: " + user.Id);
+        Console.WriteLine("ACCOUNT APPUSERID: " + user.AppUserId);
+        Console.WriteLine("ACCOUNT USERNAME: " + user.UserName);
+        _db.SaveChanges();
         return RedirectToAction("Login");
       }
       else
