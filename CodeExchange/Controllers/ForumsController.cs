@@ -15,8 +15,8 @@ namespace CodeExchange.Controllers
   public class ForumsController : Controller
   {
     private readonly CodeExchangeContext _db;
-    private readonly UserManager<ApplicationUser> _userManager;
-    public ForumsController(UserManager<ApplicationUser> userManager, CodeExchangeContext db)
+    private readonly UserManager<AppUser> _userManager;
+    public ForumsController(UserManager<AppUser> userManager, CodeExchangeContext db)
     {
       _userManager = userManager;
       _db = db;

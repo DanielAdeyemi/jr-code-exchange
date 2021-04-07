@@ -9,10 +9,10 @@ namespace CodeExchange.Models
   public class AccountController : Controller
   {
     private readonly CodeExchangeContext _db;
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<AppUser> _userManager;
+    private readonly SignInManager<AppUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, CodeExchangeContext db)
+    public AccountController (UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, CodeExchangeContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
@@ -28,7 +28,7 @@ namespace CodeExchange.Models
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       ViewBag.count = 0;
-      var user = new ApplicationUser { UserName = model.Email };
+      var user = new AppUser { UserName = model.Email };
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if(result.Succeeded)
       {

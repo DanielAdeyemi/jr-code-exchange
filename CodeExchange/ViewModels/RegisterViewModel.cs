@@ -16,6 +16,7 @@ namespace CodeExchange.ViewModels
     
     // public string Username { get; set; }
 
+
     [Required]
     [DataType(DataType.Password)]
     [Display(Name = "Password")]

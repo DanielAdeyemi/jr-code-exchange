@@ -29,7 +29,7 @@ namespace CodeExchange
         .AddDbContext<CodeExchangeContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
         
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+      services.AddIdentity<AppUser, IdentityRole>()
         .AddEntityFrameworkStores<CodeExchangeContext>()
         .AddDefaultTokenProviders();
 

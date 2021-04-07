@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace CodeExchange.Models
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
         public AppUser()
         {
@@ -15,9 +16,9 @@ namespace CodeExchange.Models
         }
 
         public int AppUserId { get; set; }
-        public string Username { get; set; }
+        public string AppUsername { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
+        // public string Email { get; set; }
         public string Role { get; set; }
         public string LinkedIn { get; set; }
         public string GitHub { get; set; }
@@ -32,8 +33,8 @@ namespace CodeExchange.Models
         public virtual List<Post> Dislikes { get; set; }
 
 
-        // public string IpAddress { get; set; }
-        public virtual ApplicationUser User { get; set; }  
+        // // public string IpAddress { get; set; }
+        // public virtual ApplicationUser User { get; set; }  
         public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
       
         public async Task<AppUser> LikePost(Post post, CodeExchangeContext UsersDb)

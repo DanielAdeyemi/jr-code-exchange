@@ -22,7 +22,7 @@ namespace CodeExchange.Models
     public int CreatorId { get; set; }
     public bool IsVisible { get; set; }
 
-    public virtual ApplicationUser User { get; set; }
+    // public virtual ApplicationUser User { get; set; }
     public virtual List<Post> Comments { get; set; }
     public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
 
