@@ -61,7 +61,7 @@ namespace CodeExchange.Models
       }
     }
 
-    [HttpPost]
+    // [HttpPost]
     public async Task<ActionResult> LogOff()
     {
       await _signInManager.SignOutAsync();

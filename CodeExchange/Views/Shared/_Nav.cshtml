@@ -10,7 +10,7 @@
       @if (User.Identity.IsAuthenticated)
       {
         <p class="nav-item mt-3 mr-4"> Hi, </p>
-        <button class="nav-item final-nav has-text-white mr-4 mt-1 button has-background-primary">@Html.ActionLink("Log Off", "Index", "Home")</button>
+        <button class="nav-item final-nav has-text-white mr-4 mt-1 button has-background-primary">@Html.ActionLink("Log Off", "LogOff", "Account")</button>
       }
       else
       {
