@@ -34,7 +34,7 @@ namespace CodeExchange.Models
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
       ViewBag.count = 0;
-      var user = new AppUser { UserName = model.Username, Email = model.Email, CreationDate = DateTime.Now };
+      var user = new AppUser { UserName = model.Email, Email = model.Email, CreationDate = DateTime.Now, DisplayName = model.Username};
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if(result.Succeeded)
       {

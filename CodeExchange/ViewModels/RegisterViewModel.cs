@@ -11,7 +11,7 @@ namespace CodeExchange.ViewModels
     public string Email { get; set; }
 
     [Required]
-    [DataType(DataType.Custom)]
+    [DataType(DataType.Text)]
     [Display(Name = "Username")]
     
     public string Username { get; set; }
