@@ -23,7 +23,7 @@ namespace CodeExchange.Controllers
     }
     [AllowAnonymous]
     public async Task <ActionResult> Index()
-    { 
+    {
       Dictionary<string, AppUser> userList = new Dictionary<string, AppUser>();
       foreach(AppUser user in _db.AppUsers) {
         userList.Add(user.UserName, user);
@@ -40,7 +40,7 @@ namespace CodeExchange.Controllers
       _db.SaveChanges();
       ViewBag.userList = userList;
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
-      ViewBag.postByPopularity = _db.Posts.ToList( ).OrderByDescending(e => e.Likes);
+      ViewBag.postByPopularity = _db.Posts.Where(post => post.Title.Length > 0).ToList().OrderByDescending(e => e.Likes);
       // ViewBag.Usernames = userList;
       // (Implement on CSHTML) =
       // Scrolling list of most popular posts (stretch)

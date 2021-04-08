@@ -3,7 +3,21 @@
 }
 
 @model CodeExchange.Models.Post
-
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li>
+      @foreach(var join in Model.JoinEntities)
+      {
+        @if(join.PostId == Model.PostId)
+        {
+          <a href="/Forums/Details/@join.Forum.ForumId">@join.Forum.Name</a>
+        }
+      }
+    </li>
+    <li class="is-primary"><a href="#" aria-current="page">@Model.Title</a></li>
+  </ul>
+</nav>
 <div class="tile">
       <article class="tile is-vertical notification">
 

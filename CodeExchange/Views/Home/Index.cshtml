@@ -22,6 +22,16 @@
           <p class="title has-text-light mt-1 mb-2">@post.Title</p>
           <br>
           <p class="content has-text-light">@post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
+          <br/>
+          @if(post.Comments.Count == 1)
+          {
+            <p class="content has-text-light">@post.Comments.Count Comment <i class="far fa-comment-dots"></i></p>
+          }
+          else
+          {
+            <p class="content has-text-light">@post.Comments.Count Comments <i class="far fa-comment-dots"></i></p>
+          }
+          
           </a>
       </article>
     </div>

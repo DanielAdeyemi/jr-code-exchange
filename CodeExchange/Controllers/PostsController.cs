@@ -42,10 +42,10 @@ namespace CodeExchange.Controllers
     [HttpGet]
     public ActionResult Details(int id)
     {
-      // var thisPost = _db.Posts
-      //   .Include(post => post.JoinEntities)
-      //   .ThenInclude(join => join.Forum)
-      //   .FirstOrDefault(post => post.PostId == id);
+      ViewBag.PostEntity = _db.Posts
+        .Include(post => post.JoinEntities)
+        .ThenInclude(join => join.Forum)
+        .FirstOrDefault(post => post.PostId == id);
 
       var thisPost = _db.Posts.Include(post => post.Comments).FirstOrDefault(post => post.PostId == id);
       return View(thisPost);
@@ -60,14 +60,14 @@ namespace CodeExchange.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Post post, int forumId) {
-      var thisAppUser = _db.AppUsers.FirstOrDefault(u => u.UserName == post.Creator);
+    public async Task<ActionResult> Create(Post post, int forumId) {
+      var thisAppUser = await _db.AppUsers.FirstOrDefaultAsync(u => u.UserName == post.Creator);
       _db.Posts.Add(post);
-      _db.SaveChanges();
-      var thisForum = _db.Forums.FirstOrDefault(entry => entry.ForumId == forumId);
-      _db.AppUserForumPost.Add(new AppUserForumPost() { ForumId = forumId, PostId = post.PostId, AppUserId = thisAppUser.AppUserId});
+      await _db.SaveChangesAsync();
+      var thisForum = await _db.Forums.FirstOrDefaultAsync(entry => entry.ForumId == forumId);
+      await _db.AppUserForumPost.AddAsync(new AppUserForumPost() { ForumId = forumId, PostId = post.PostId, AppUserId = thisAppUser.AppUserId});
       // bool matches = _db.AppUserForumPost.Any(x => x.ForumId == forumId && x.PostId == post.PostId && x.AppUserId == post.AppUserId);
-      _db.SaveChanges();
+      await _db.SaveChangesAsync();
       return RedirectToAction("Index", "Forums");
     }
 
