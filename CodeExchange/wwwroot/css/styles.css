@@ -6,22 +6,30 @@ html {
 }
 
 footer {
-  position: fixed;
-  left: 37%;
-  margin-top: 10%;
+  position: absolute;
   bottom: 0;
   width: 100%;
-  color: #FFF;
+  left: 30%;
+  height: 2.5rem;  
   padding: 8px;
+  opacity: 0.7;
+  margin-top: 1%;
 }
 
+.container {
+  position: relative;
+  min-height: 90vh;
+}
+
+#content-wrap {
+  padding-bottom: 1.5rem;   
+}
 
 /* Custom Colors */
 
 .color-3 {
   color: #37ade3;
 }
-
 
 /* Navbar Styling */
 
@@ -63,7 +71,6 @@ h1>a:hover {
   width: 20%;
 }
 
-
 /* Index posts */
 
 .notification {
@@ -103,7 +110,6 @@ h1>a:hover {
   text-decoration: none;
 }
 
-
 /* Index forum side bar */
 
 .forum-boxes {
@@ -120,13 +126,105 @@ h1>a:hover {
   font-size: 1.6em;
 }
 
+/* Account styles */
 
-/* Register styles */
-
-.register-btns>a {
+.account-btns>a {
   color: #fff;
 }
 
-.register-btns {
-  position: relative;
+.account-btns {
+  display: block;
+  margin: auto;
+  margin-bottom: 2%;
+  font-size: 0.9em;
+  padding: 0 2%;
+}
+
+.submit-btns {
+  display: block;
+  margin: auto;
+  font-size: 1.3em;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+/* Details styling */
+.breadcrumb a {
+  color: #37ade3;
+}
+
+.breadcrumb {
+  margin-top: 5%;
+}
+
+.breadcrumb a:hover {
+  color: #FFF;
+}
+
+.post-tile {
+  margin-bottom: 3%;
+}
+
+.comment-submit {
+  margin-top: 3%;
+}
+
+textarea {
+  font-size: 1.1em;
+}
+
+.comment-tile {
+  margin-bottom: 2%;
+}
+
+/* Forum Index styling */
+.forum-index:hover{
+  transform: none;
+}
+
+.forum-index{
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.top-index{
+  margin-top: 5%;
+}
+
+.forum-link:hover{
+  border: 1px solid #FFF;
+}
+
+.column.is-one-quarter {
+  padding: 0;
+  width: 24%;
+}
+
+.index-main {
+  margin-left: 22%;
+}
+
+.index-forum {
+  margin-left: 0.5%;
+}
+
+.cursor { 
+  cursor: pointer;
+}
+
+.forum-link {
+  display: block;
+  z-index: 1;
+  padding: 10% 15%;
+  border: 1px solid transparent;
+  width: 100%;
+}
+
+/* Forum Details */
+.forum-detail {
+  border: 1px solid transparent;
+}
+
+.forum-detail:hover{
+  border: 1px solid #FFF;
 }
