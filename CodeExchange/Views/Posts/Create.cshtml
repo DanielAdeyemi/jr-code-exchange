@@ -5,19 +5,24 @@
 @using System.Security.Claims
 @using CodeExchange.Models;
 
-<h1> Create a new Post </h1>
-@using (Html.BeginForm())
-{
-  <input type="hidden" name="Creator" value=@User.Identity.Name></input>
+<h1 class="has-text-light is-size-3"> Create a new Post </h1>
+<hr>
+<div class="columns is-centered mt-6">
+  <div class="column is-half">
+    @using (Html.BeginForm())
+    {
+      <input type="hidden" name="Creator" value=@User.Identity.Name></input>
 
-  @Html.LabelFor(model => model.Title)
-  @Html.TextBoxFor(model => model.Title)
+      @Html.LabelFor(model => model.Title, new { @class="has-text-white is-4"})
+      @Html.TextBoxFor(model => model.Title, new{ @class="input mb-2", @required="required", @placeholder="Post Title"})
 
-  @Html.LabelFor(model => model.Content)
-  @Html.TextBoxFor(model => model.Content)
+      @Html.LabelFor(model => model.Content, new { @class="has-text-white is-4"})
+      @Html.TextAreaFor(model => model.Content, new{ @class="mb-2", @required="required", @placeholder="Post Content", @rows="5", @cols="80"})
 
-  @Html.Label("Posting for Current Forum: ")
-  @Html.DropDownList("ForumId")
+      @Html.Label("Posting for Current Forum: ")
+      @Html.DropDownList("ForumId")
 
-  <input type="submit" value="Submit Post" />
-}
+      <input type="submit" value="Submit Post" class="button is-success submit-btns" />
+    }
+  </div>
+</div>

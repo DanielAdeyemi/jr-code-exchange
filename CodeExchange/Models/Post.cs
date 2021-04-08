@@ -43,20 +43,8 @@ namespace CodeExchange.Models
     
     // Generate preview up to 35 characters. If preview[35] != whitespace then keep building string up to 100
 
-    public async Task<String> GeneratePreview() {
+      public async Task<String> GeneratePreview() {
       if(this.Content.Length > 200 && this.Content.Length < 1000) {
-      int Counter = 0;
-      for(int i = 1; i < this.Content.Length; i++) {
-        if(this.Content[i] != ' ' && this.Content[i-1] != ' ') {
-          Counter++;
-        }
-        if(this.Content[i] == ' ') {
-          Counter = 0;
-        }
-        if(Counter == 10) {
-          return this.Preview = this.Content.Substring(0, 20);
-        }
-      }
       this.Preview = this.Content.Substring(0, 200);
       if (this.Preview[199] != ' '){
         for(int i = 200; i < 1000; i++) {
@@ -67,11 +55,11 @@ namespace CodeExchange.Models
         }
       }
     }
-      else if(this.Content.Length > 200) {
-         this.Preview = this.Content.Substring(0, 20);
+      else if(this.Content.Length < 200) {
+      this.Preview = this.Content;
       return this.Preview;
       }
-      return this.Preview; // String.Remove(20)???
+      return this.Preview;
     }
   }
 }
