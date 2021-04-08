@@ -13,20 +13,22 @@
     <div class="tile">
       <article class="tile is-vertical notification">
         <a href="/Posts/">
-          <div>
-            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="bx bx-code has-text-primary hover-grow"></i> @post.Likes</p>
-            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="bx bx-code-alt has-text-primary hover-grow"></i> @post.Dislikes</p>
+          <div class="container-div">
+            @* <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="bx bx-code has-text-primary hover-grow"></i> @post.Likes</p> *@
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary"></i> @post.Likes</p>
+            @* <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="bx bx-code-alt has-text-primary hover-grow"></i> @post.Dislikes</p> *@
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary"></i> @post.Dislikes</p>
             <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @post.Age()</p>
+            <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@post.Creator</span></p> 
           </div>
-        @*<p class="subtitle has-text-light">@post.Forum.Name</p> *@
           <p class="title has-text-light mt-1 mb-2">@post.Title</p>
           <br>
-          <p class="content has-text-light">@post.Preview <i class='bx bx-right-down-arrow-circle'></i></p>
+          <p class="content has-text-light">@post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
           </a>
       </article>
     </div>
   </div>
-}   
+}
   </div>
   <div class="tile is-parent is-3">
     <div class="tile is-child notification">

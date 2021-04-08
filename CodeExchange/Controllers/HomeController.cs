@@ -24,19 +24,25 @@ namespace CodeExchange.Controllers
     [AllowAnonymous]
     public async Task <ActionResult> Index()
     {
+      Dictionary<string, AppUser> userList = new Dictionary<string, AppUser>();
+      foreach(AppUser user in _db.AppUsers) {
+        userList.Add(user.Username, user);
+      }
       // Grab _Db of forums and Include Posts sorted by DateTime
       // Pass both into view. Forums will be integrated into sidebar 
       ICollection<Forum> model = _db.Forums.ToList();
+      // List<AppUser> AppUsersList = new List<AppUser>;
       foreach(Post post in _db.Posts) {
+        // var thisUser = AppUsersList.FirstOrDefault(entry => entry.AppUserId == post.CreatorId);
         await post.GeneratePreview();
-        System.Console.WriteLine(post.Content);
-        System.Console.WriteLine(post.Preview);
+        // userList.Add(post.CreatorId, thisUser.Username);
          _db.Entry(post).State = EntityState.Modified;
       }
       _db.SaveChanges();
-
+      ViewBag.userList = userList;
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
-      ViewBag.postByPopularity = _db.Posts.ToList().OrderByDescending(e => e.Likes);
+      ViewBag.postByPopularity = _db.Posts.ToList( ).OrderByDescending(e => e.Likes);
+      // ViewBag.Usernames = userList;
       // (Implement on CSHTML) =
       // Scrolling list of most popular posts (stretch)
       // OR button at button to load next 10 most popular posts

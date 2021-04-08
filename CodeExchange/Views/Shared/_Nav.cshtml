@@ -4,7 +4,8 @@
 <div class="block" id="nav-div">
   <nav class="navbar is-fixed-top is-dark">
     <div class="navbar-brand">
-      <h1 class="title is-4 has-text-white ml-5 mt-2"><span class="title is-4 ml-5 mt-2 has-text-primary">@Html.ActionLink("Jr", "Index", "Home")</span>@Html.ActionLink("CodeExchange", "Index", "Home")</h1>
+      <a href=@Url.Action("Index", "Home") class="ml-5 mt-2 logo"> <img alt="" src="~/img/jrce-icon.png" class="nav-img" /></a>
+      <h1 class="title is-4 has-text-white mt-3"><span class="title is-4 ml-3 mt-2 has-text-primary">@Html.ActionLink("Jr", "Index", "Home")</span>@Html.ActionLink("CodeExchange", "Index", "Home")</h1>
     </div>
     <div class="navbar-menu navbar-end is-active">
       @if (User.Identity.IsAuthenticated)

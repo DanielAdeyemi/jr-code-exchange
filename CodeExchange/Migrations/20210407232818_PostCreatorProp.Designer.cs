@@ -3,14 +3,16 @@ using System;
 using CodeExchange.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeExchange.Migrations
 {
     [DbContext(typeof(CodeExchangeContext))]
-    partial class CodeExchangeContextModelSnapshot : ModelSnapshot
+    [Migration("20210407232818_PostCreatorProp")]
+    partial class PostCreatorProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,8 +261,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            CreationDate = new DateTime(2021, 4, 7, 21, 34, 21, 48, DateTimeKind.Local).AddTicks(9557),
-                            Creator = "Uncle Daniel",
+                            CreationDate = new DateTime(2021, 4, 7, 21, 28, 17, 454, DateTimeKind.Local).AddTicks(5105),
                             CreatorId = 1,
                             Dislikes = 0,
                             IsVisible = true,
@@ -271,8 +272,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 2,
                             Content = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure",
-                            CreationDate = new DateTime(2021, 4, 7, 16, 34, 21, 49, DateTimeKind.Local).AddTicks(41),
-                            Creator = "Uncle Tien",
+                            CreationDate = new DateTime(2021, 4, 7, 16, 28, 17, 454, DateTimeKind.Local).AddTicks(5635),
                             CreatorId = 2,
                             Dislikes = 0,
                             IsVisible = true,
@@ -283,8 +283,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 3,
                             Content = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.",
-                            CreationDate = new DateTime(2021, 4, 7, 16, 34, 21, 49, DateTimeKind.Local).AddTicks(49),
-                            Creator = "Uncle Mikey",
+                            CreationDate = new DateTime(2021, 4, 7, 16, 28, 17, 454, DateTimeKind.Local).AddTicks(5644),
                             CreatorId = 3,
                             Dislikes = 0,
                             IsVisible = true,
@@ -295,8 +294,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 4,
                             Content = "Here's a post",
-                            CreationDate = new DateTime(2021, 4, 7, 16, 34, 21, 49, DateTimeKind.Local).AddTicks(57),
-                            Creator = "John",
+                            CreationDate = new DateTime(2021, 4, 7, 16, 28, 17, 454, DateTimeKind.Local).AddTicks(5650),
                             CreatorId = 4,
                             Dislikes = 0,
                             IsVisible = true,
@@ -307,8 +305,7 @@ namespace CodeExchange.Migrations
                         {
                             PostId = 5,
                             Content = "I would upload an image here if I had that functionality",
-                            CreationDate = new DateTime(2021, 4, 7, 16, 34, 21, 49, DateTimeKind.Local).AddTicks(64),
-                            Creator = "Lol2",
+                            CreationDate = new DateTime(2021, 4, 7, 16, 28, 17, 454, DateTimeKind.Local).AddTicks(5657),
                             CreatorId = 1,
                             Dislikes = 10,
                             IsVisible = true,
