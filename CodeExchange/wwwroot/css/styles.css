@@ -190,7 +190,6 @@ textarea {
 
 .top-index{
   margin-top: 5%;
-  padding: 2% 3%;
 }
 
 .top-index:hover{
@@ -198,6 +197,7 @@ textarea {
 }
 
 .column.is-one-quarter {
+  padding: 0;
   width: 24%;
 }
 
@@ -214,9 +214,9 @@ textarea {
 }
 
 .forum-link {
-  position: relative;
+  display: block;
   z-index: 1;
-  padding: inherit;
+  padding: 10% 15%;
 }
 
 /* Forum Details */
