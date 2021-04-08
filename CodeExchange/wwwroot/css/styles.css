@@ -13,6 +13,7 @@ footer {
   height: 2.5rem;  
   padding: 8px;
   opacity: 0.7;
+  margin-top: 1%;
 }
 
 .container {
@@ -21,7 +22,7 @@ footer {
 }
 
 #content-wrap {
-  padding-bottom: 1rem;   
+  padding-bottom: 1.5rem;   
 }
 
 /* Custom Colors */
@@ -170,5 +171,9 @@ h1>a:hover {
 
 textarea {
   font-size: 1.1em;
+}
+
+.comment-tile {
+  margin-bottom: 2%;
 }
 
