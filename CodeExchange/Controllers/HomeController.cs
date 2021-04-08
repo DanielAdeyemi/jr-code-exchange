@@ -38,6 +38,7 @@ namespace CodeExchange.Controllers
          _db.Entry(post).State = EntityState.Modified;
       }
       _db.SaveChanges();
+      // ViewBag.UserDb = _db.AppUsers;
       ViewBag.userList = userList;
       ViewBag.postByDate = _db.Posts.ToList().OrderByDescending(e => e.CreationDate);
       ViewBag.postByPopularity = _db.Posts.Where(post => post.Title.Length > 0).ToList().OrderByDescending(e => e.Likes);
