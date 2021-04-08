@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using CodeExchange.ViewModels
+
+@model RegisterViewModel
+
+<h2 class="has-text-light">Register</h2>
+<hr />
+@if(ViewBag.count > 0)
+{
+  <p> Username or Email is unavailable. Please try again with a different username or email! </p>
+}
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.LabelFor(user => user.Email, new { @class="has-text-white", @required="required"})
+    @Html.TextBoxFor(user=> user.Email)
+
+    @Html.LabelFor(user => user.Username, new { @class="has-text-white", @required="required"})
+    @Html.TextBoxFor(user=> user.Username)
+
+    @Html.LabelFor(user=> user.Password, new { @class="has-text-white", @required="required"})
+    @Html.PasswordFor(user=> user.Password)
+
+    @Html.LabelFor(user=> user.ConfirmPassword, new { @class="has-text-white", @required="required"})
+    @Html.PasswordFor(user=> user.ConfirmPassword)
+
+    <input type="submit" value="Register" class="btn btn-success" />
+}
+
+<p class="button is-primary">@Html.ActionLink("Login", "Login")</p>
+<p class="button is-primary">@Html.ActionLink("Back - Home", "Index", "Home")</p>

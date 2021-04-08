@@ -1,0 +1,50 @@
+@{
+  Layout = "_Layout";
+}
+
+@using CodeExchange.Models;
+@model List<CodeExchange.Models.Forum>
+<div class="tile is-ancestor is-justify-content-center mb-6">
+  <div class="tile is-parent is-6 is-vertical">
+@foreach(Post post in @ViewBag.postByPopularity)
+{
+  @* System.Console.WriteLine(post.Content); *@
+  <div class='tile is-child is-12 posts'>
+    <div class="tile">
+      <article class="tile is-vertical notification">
+        <a href="/Posts/">
+          <div class="container-div">
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @post.Likes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @post.Dislikes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @post.Age()</p>
+            <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@post.Creator</span></p> 
+          </div>
+          <p class="title has-text-light mt-1 mb-2">@post.Title</p>
+          <br>
+          <p class="content has-text-light">@post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
+          </a>
+      </article>
+    </div>
+  </div>
+}
+  </div>
+  <div class="tile is-parent is-3">
+    <div class="tile is-child notification">
+      @foreach(Forum forum in Model)
+      {
+        <a href="/Forums/">
+        <div class="forum-boxes"> @* html action link to forum page needed *@
+          <p class="is-inline-block forum-name has-text-light">@forum.Name</p>
+          <p class="is-inline-block ml-2 has-text-light">@forum.ForumFollowers.Count<i class='bx bx-game ml-1 color-3'></i></p>
+        </div>
+        </a>
+      }
+    </div>
+  </div>
+</div>
+
+
+
+@* <p> @ViewBag.postByDate.Length() </p>
+<p> @ViewBag.postByPopularity.Length() </p>
+<p> @Model.Count() </p> *@
