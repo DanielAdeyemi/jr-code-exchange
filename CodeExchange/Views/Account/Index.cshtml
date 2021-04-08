@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@using System.Security.Claims
+
+<h1> Welcome to JrCodeExchange </h1>
+<hr />
+@if (User.Identity.IsAuthenticated)
+
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+    }
+}
+else
+{
+    <p>@Html.ActionLink("Register", "Register")</p>
+    <p>@Html.ActionLink("Log in", "Login")</p>
+}
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

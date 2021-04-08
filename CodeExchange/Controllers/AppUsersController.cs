@@ -15,8 +15,8 @@ namespace CodeExchange.Controllers
   public class AppUsersController : Controller
   {
     private readonly CodeExchangeContext _db;
-    private readonly UserManager<ApplicationUser> _userManager;
-    public AppUsersController(UserManager<ApplicationUser> userManager, CodeExchangeContext db)
+    private readonly UserManager<AppUser> _userManager;
+    public AppUsersController(UserManager<AppUser> userManager, CodeExchangeContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -47,11 +47,11 @@ namespace CodeExchange.Controllers
     }
     
     // Might need the signout function.
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    [HttpPost]
+    public ActionResult DeleteConfirmed(AppUser appUser)
     {
-      var thisUserApp = _db.AppUsers.FirstOrDefault( u => u.AppUserId == id);
-      _db.AppUsers.Remove(thisUserApp);
+      appUser.IsVisible = false;
+      _db.Entry(appUser).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }

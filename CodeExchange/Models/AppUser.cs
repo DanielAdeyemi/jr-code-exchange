@@ -4,21 +4,29 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace CodeExchange.Models
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
         public AppUser()
         {
             this.JoinEntities = new HashSet<AppUserForumPost>();
+            this.Role = "User";
+            this.IsVisible = true;
         }
 
         public int AppUserId { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        // public string DisplayName { get; set; }
+        // public string Password { get; set; }
+        // public string Email { get; set; }
+        public string Role { get; set; }
+        public string LinkedIn { get; set; }
+        public string GitHub { get; set; }
         public int Rep { get; set; }
+        public bool IsVisible { get; set; }
+
         public DateTime CreationDate { get; set; }
         public DateTime LastActive { get; set; }
         public virtual List<AppUser> UserFollowers { get; set; } // Each user's Id
@@ -27,92 +35,10 @@ namespace CodeExchange.Models
         public virtual List<Post> Dislikes { get; set; }
 
 
-        // public string IpAddress { get; set; }
-        public virtual ApplicationUser User { get; set; }  
+        // // public string IpAddress { get; set; }
+        // public virtual ApplicationUser User { get; set; }  
         public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
       
-        public async Task<Post> LikePost(Post post, CodeExchangeContext UserDb)
-        {
-            if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
-            {
-                this.Likes.Add(post);
-                post.Likes++;
-                //Target user and add rep
-                var targetUser = UserDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
-                if (targetUser == null)
-                {
-                    return targetUser;
-                }
-                else
-                {
-                    targetUser.Rep++;
-                    await UserDb.SaveChangesAsync();
-                    return targetUser;
-                }
-            }
-            return null;
-        }
-      
-        public async Task<Post> DislikePost(Post post, CodeExchangeContext UsersDb)
-        {
-            if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
-            {
-                this.Dislikes.Add(post);
-                post.Dislikes++;
-                //Target user and decrement rep
-                var targetUser = UserDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
-                if (targetUser == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    targetUser.Rep--;
-                    await UserDb.SaveChangesAsync();
-                    return targetUser;
-                }
-            }
-            return null;
-        }
-      
-        public async Task<Post> RemoveLike(Post post, CodeExchangeContext UsersDb)
-        {
-            if (this.Likes.Contains(post) == true)
-            {
-                this.Likes.Remove(post);
-                post.Likes--;
-                //Target user and decrement rep
-                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
-                if (targetUser == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    targetUser.Rep--;
-                    await UsersDb.SaveChangesAsync();
-                    return targetUser;
-                }
-
-            }
-            else if (this.Dislikes.Contains(post) == true)
-            {
-                this.Dislikes.Remove(post);
-                post.Dislikes--;
-                //Target user and decrement rep
-                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
-                if (targetUser == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    targetUser.Rep--;
-                    await UsersDb.SaveChangesAsync();
-                    return targetUser;
-                }
-            }
-            return null;
-        }
+ 
     }
 }

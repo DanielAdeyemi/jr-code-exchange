@@ -29,20 +29,20 @@ namespace CodeExchange
         .AddDbContext<CodeExchangeContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
         
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+      services.AddIdentity<AppUser, IdentityRole>()
         .AddEntityFrameworkStores<CodeExchangeContext>()
         .AddDefaultTokenProviders();
 
       services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 6;
+        options.Password.RequiredLength = 1;
         options.Password.RequireLowercase = false;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
 
-        options.User.RequireUniqueEmail = true;
+        // options.User.RequireUniqueEmail = true;
       });
     }
 
