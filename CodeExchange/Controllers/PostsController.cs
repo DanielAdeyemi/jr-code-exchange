@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using CodeExchange.Models;
+using System;
 
 namespace CodeExchange.Controllers
 {
@@ -41,10 +42,12 @@ namespace CodeExchange.Controllers
     [HttpGet]
     public ActionResult Details(int id)
     {
-      var thisPost = _db.Posts
-        .Include(post => post.JoinEntities)
-        .ThenInclude(join => join.Forum)
-        .FirstOrDefault(post => post.PostId == id);
+      // var thisPost = _db.Posts
+      //   .Include(post => post.JoinEntities)
+      //   .ThenInclude(join => join.Forum)
+      //   .FirstOrDefault(post => post.PostId == id);
+
+      var thisPost = _db.Posts.Include(post => post.Comments).FirstOrDefault(post => post.PostId == id);
       return View(thisPost);
     }
 
@@ -111,6 +114,23 @@ namespace CodeExchange.Controllers
       _db.Entry(forum).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Details(Post comment)
+    {
+
+      var newComment = new Post { Likes = 0, Dislikes = 0, Title = "", Content = comment.Content, Creator = comment.Creator, IsVisible = true };
+      System.Console.WriteLine("test");
+      Console.WriteLine("NEW COMMENT CREATOR: " + newComment.Creator);
+      Console.WriteLine("NEW COMMENT CONTENT: " + newComment.Content);
+
+      var thisPost = await _db.Posts.FirstOrDefaultAsync(post => post.PostId == comment.PostId);
+      thisPost.Comments.Add(newComment);
+      await _db.SaveChangesAsync();
+
+
+      return  RedirectToAction("Details", "Posts", new { id = thisPost.PostId });
     }
   }
 }

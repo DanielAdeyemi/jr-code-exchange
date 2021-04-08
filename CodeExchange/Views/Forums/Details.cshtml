@@ -18,15 +18,18 @@ else
   {
     <div class="tile">
       <article class="tile is-vertical notification">
-        <div class="container-div">
-          <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @join.Post.Likes</p>
-          <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @join.Post.Dislikes</p>
-          <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @join.Post.Age()</p>
-          <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@join.Post.Creator</span></p> 
-        </div>
-        <p class="title has-text-light mt-1 mb-2">@join.Post.Title</p>
-        <br>
-        <p class="content has-text-light">@join.Post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
+
+        <a href ='/Posts/Details/@join.Post.PostId'>
+          <div class="container-div">
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @join.Post.Likes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @join.Post.Dislikes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @join.Post.Age()</p>
+            <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@join.Post.Creator</span></p> 
+          </div>
+          <p class="title has-text-light mt-1 mb-2">@join.Post.Title</p>
+          <br>
+          <p class="content has-text-light">@join.Post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
+        </a>
       </article>
     </div>
   }

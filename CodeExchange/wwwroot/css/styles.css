@@ -5,6 +5,16 @@ html {
   text-decoration: none;
 }
 
+footer {
+  position: fixed;
+  left: 37%;
+  margin-top: 10%;
+  bottom: 0;
+  width: 100%;
+  color: #FFF;
+  padding: 8px;
+}
+
 
 /* Custom Colors */
 
@@ -17,6 +27,11 @@ html {
 
 button>a {
   color: #FFF;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: .8em;
+  margin: -.8em;
 }
 
 button>a:hover {
@@ -103,4 +118,15 @@ h1>a:hover {
 
 .forum-name {
   font-size: 1.6em;
+}
+
+
+/* Register styles */
+
+.register-btns>a {
+  color: #fff;
+}
+
+.register-btns {
+  position: relative;
 }
