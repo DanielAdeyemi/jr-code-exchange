@@ -185,14 +185,13 @@ textarea {
 .forum-index{
   text-align: center;
   font-size: 1.2em;
-  border: 1px solid transparent;
 }
 
 .top-index{
   margin-top: 5%;
 }
 
-.top-index:hover{
+.forum-link:hover{
   border: 1px solid #FFF;
 }
 
@@ -217,6 +216,8 @@ textarea {
   display: block;
   z-index: 1;
   padding: 10% 15%;
+  border: 1px solid transparent;
+  width: 100%;
 }
 
 /* Forum Details */
