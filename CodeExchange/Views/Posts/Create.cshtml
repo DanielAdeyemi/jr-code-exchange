@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+@model CodeExchange.Models.Post
+@using System.Security.Claims
+@using CodeExchange.Models;
+
+<h1> Create a new Post </h1>
+@using (Html.BeginForm())
+{
+  <input type="hidden" name="Creator" value=@User.Identity.Name></input>
+
+  @Html.LabelFor(model => model.Title)
+  @Html.TextBoxFor(model => model.Title)
+
+  @Html.LabelFor(model => model.Content)
+  @Html.TextBoxFor(model => model.Content)
+
+  @Html.Label("Posting for Current Forum: ")
+  @Html.DropDownList("ForumId")
+
+  <input type="submit" value="Submit Post" />
+}
