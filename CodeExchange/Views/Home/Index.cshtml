@@ -3,49 +3,27 @@
 }
 
 @using CodeExchange.Models;
-@using System.Security.Claims;
 @model List<CodeExchange.Models.Forum>
 
 <div class="tile is-ancestor is-justify-content-center mb-6">
   <div class="tile is-parent is-6 is-vertical">
 @foreach(Post post in @ViewBag.postByPopularity)
 {
-  
   @* System.Console.WriteLine(post.Content); *@
   <div class='tile is-child is-12 posts'>
     <div class="tile">
       <article class="tile is-vertical notification">
-        <!-- <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @post.Likes</p> -->
-        <!-- <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @post.Dislikes</p> -->
-        @using (Html.BeginForm("Index", "Home"))
-        {
-          @* @Html.Hidden(post); *@
-          <input type="hidden" name="PostId" value=@post.PostId></input>
-          <input type="hidden" name="Creator" value=@User.Identity.Name></input>
-
-          <input type="submit" class="far fa-hand-point-up has-text-primary hover-grow" value="&#xf0a6; @post.Likes" />
-
-        }
-        @using (Html.BeginForm("DisLikeIndex", "Home"))
-        {
-          @* @Html.Hidden(post); *@
-          <input type="hidden" name="PostId" value=@post.PostId></input>
-          <input type="hidden" name="Creator" value=@User.Identity.Name></input>
-
-          <input type="submit" class="fas fa-poo has-text-primary hover-grow" value="&#xf2fe; @post.Dislikes" />
-
-        }
-
         <a href="/Posts/Details/@post.PostId">
           <div class="container-div">
-
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @post.Likes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @post.Dislikes</p>
             <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @post.Age()</p>
             <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@post.Creator</span></p> 
+          </div>
           <p class="title has-text-light mt-1 mb-2">@post.Title</p>
           <br>
           <p class="content has-text-light">@post.Preview <i class='bx bx-right-down-arrow-circle color-3'></i></p>
           <br/>
-          </div>
           @if(post.Comments.Count == 1)
           {
             <p class="content has-text-light">@post.Comments.Count Comment <i class="far fa-comment-dots"></i></p>
@@ -77,3 +55,7 @@
 </div>
 
 
+
+@* <p> @ViewBag.postByDate.Length() </p>
+<p> @ViewBag.postByPopularity.Length() </p>
+<p> @Model.Count() </p> *@

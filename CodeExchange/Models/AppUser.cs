@@ -39,6 +39,89 @@ namespace CodeExchange.Models
         // public virtual ApplicationUser User { get; set; }  
         public virtual ICollection<AppUserForumPost> JoinEntities { get; set; }
       
- 
+        public async Task<AppUser> LikePost(Post post, CodeExchangeContext UsersDb)
+        {
+            if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
+            {
+                this.Likes.Add(post);
+                post.Likes++;
+                //Target user and add rep
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                if (targetUser == null)
+                {
+                    return targetUser;
+                }
+                else
+                {
+                    targetUser.Rep++;
+                    await UsersDb.SaveChangesAsync();
+                    return targetUser;
+                }
+            }
+            return null;
+        }
+      
+        public async Task<AppUser> DislikePost(Post post, CodeExchangeContext UsersDb)
+        {
+            if (this.Likes.Contains(post) == false && this.Dislikes.Contains(post) == false)
+            {
+                this.Dislikes.Add(post);
+                post.Dislikes++;
+                //Target user and decrement rep
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                if (targetUser == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    targetUser.Rep--;
+                    await UsersDb.SaveChangesAsync();
+                    return targetUser;
+                }
+            }
+            return null;
+        }
+      
+        public async Task<AppUser> RemoveLike(Post post, CodeExchangeContext UsersDb)
+        {
+            if (this.Likes.Contains(post) == true)
+            {
+                this.Likes.Remove(post);
+                post.Likes--;
+                //Target user and decrement rep
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                if (targetUser == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    targetUser.Rep--;
+                    await UsersDb.SaveChangesAsync();
+                    return targetUser;
+                }
+
+            }
+            else if (this.Dislikes.Contains(post) == true)
+            {
+                this.Dislikes.Remove(post);
+                post.Dislikes--;
+                //Target user and decrement rep
+                var targetUser = UsersDb.AppUsers.FirstOrDefault(Entry => Entry.AppUserId == post.CreatorId);
+                if (targetUser == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    targetUser.Rep--;
+                    await UsersDb.SaveChangesAsync();
+                    return targetUser;
+                }
+            }
+            return null;
+        }
+        
     }
 }

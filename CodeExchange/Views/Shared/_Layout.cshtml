@@ -14,9 +14,11 @@
   </head>
   <body class="has-navbar-fixed-top">
     <div class="container">
-    @Html.Partial("_Nav")
-    @RenderBody()
-    @Html.Partial("_Footer")
+      <div id="content-wrap">
+        @Html.Partial("_Nav")
+        @RenderBody()
+        @Html.Partial("_Footer")
+      </div>
     </div>
 
   </body>

@@ -6,14 +6,16 @@
 
 @model List<CodeExchange.Models.Forum>;
 
- <div class="tile is-parent">
-    <div class="tile is-child notification">
-      @foreach(Forum forum in Model)
-      {
-        <div class="forum-boxes"> @* html action link to forum page needed *@
-          <p class="is-inline-block forum-name has-text-light">@Html.ActionLink($"{@forum.Name}", "Details", new { id = forum.ForumId })</p>
+<div class="columns is-multiline index-forum">
+  @foreach(Forum forum in Model)
+  {
+    <div class=" column is-one-quarter notification top-index mr-1 ml-1 cursor">
+      <a href="/Forums/Details/@forum.ForumId" class="forum-link">
+        <div class="forum-index"> 
+          <p class="is-inline-block forum-name has-text-light forum-title">@forum.Name</p>
           <p class="is-inline-block ml-2 has-text-light">@forum.ForumFollowers.Count<i class='bx bx-game ml-1 color-3'></i></p>
         </div>
-      }
+      </a>
     </div>
-  </div>
+  }
+</div>

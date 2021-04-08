@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using CodeExchange.Models;
-using System;
 
 namespace CodeExchange.Controllers
 {
@@ -25,7 +24,6 @@ namespace CodeExchange.Controllers
     [AllowAnonymous]
     public async Task <ActionResult> Index()
     {
-      
       Dictionary<string, AppUser> userList = new Dictionary<string, AppUser>();
       foreach(AppUser user in _db.AppUsers) {
         userList.Add(user.UserName, user);
@@ -49,50 +47,6 @@ namespace CodeExchange.Controllers
       // Scrolling list of most popular posts (stretch)
       // OR button at button to load next 10 most popular posts
       return View(model);
-    }
-
-    [HttpPost, ActionName("Index")]
-    public ActionResult LikeIndex(Post likedPost)
-    {
-      // AppUtility newUtility = new AppUtility(_db);
-      // var newPost = newUtility.LikePost(post, username);
-      // _db.Entry(newPost).State = EntityState.Modified;
-      // _db.SaveChanges();
-
-
-      var thisPost =  _db.Posts.FirstOrDefault(post => post.PostId == likedPost.PostId);
-      
-      Console.WriteLine("POSTID FROM FIRSTORDEFAULT: " + thisPost.PostId);
-      Console.WriteLine("USERNAME: " + likedPost.Creator);
-      Console.WriteLine("POSTID: " + likedPost.PostId);
-      thisPost.Likes++;
-      Console.WriteLine(thisPost.Title);
-      _db.Entry(thisPost).State = EntityState.Modified;
-      _db.SaveChanges();
-
-      return RedirectToAction("Index");
-    }
-
-    [HttpPost]
-    public ActionResult DisLikeIndex(Post dislikePost)
-    {
-      // AppUtility newUtility = new AppUtility(_db);
-      // var newPost = newUtility.LikePost(post, username);
-      // _db.Entry(newPost).State = EntityState.Modified;
-      // _db.SaveChanges();
-
-
-      var thisPost =  _db.Posts.FirstOrDefault(post => post.PostId == dislikePost.PostId);
-      
-      Console.WriteLine("POSTID FROM FIRSTORDEFAULT: " + thisPost.PostId);
-      Console.WriteLine("USERNAME: " + dislikePost.Creator);
-      Console.WriteLine("POSTID: " + dislikePost.PostId);
-      thisPost.Dislikes++;
-      Console.WriteLine(thisPost.Title);
-      _db.Entry(thisPost).State = EntityState.Modified;
-      _db.SaveChanges();
-
-      return RedirectToAction("Index");
     }
   }
 }
