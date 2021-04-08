@@ -5,17 +5,18 @@
 @using CodeExchange.Models;
 @using System.Security.Claims
 
-<h1> @Model.Name </h1>
+<h1 class="has-text-light is-size-1 has-text-centered"> @Model.Name </h1>
+<hr>
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <h1> No Post(s) </h1>
+  <h1 class="has-text-light is-size-4"> No Post(s) </h1>
 }
 else
 {
   @foreach(var join in Model.JoinEntities)
   {
-    <div class="tile">
+    <div class="tile cursor hover forum-detail">
       <article class="tile is-vertical notification">
 
         <a href ='/Posts/Details/@join.Post.PostId'>
@@ -34,4 +35,4 @@ else
   }
 }
 
-<p>@Html.ActionLink("Create a new Post", "Create", "Posts", new { forumId = @Model.ForumId })</p>
+<button class="button is-primary submit-btns">@Html.ActionLink("Create a new Post", "Create", "Posts", new { forumId = @Model.ForumId })</button>

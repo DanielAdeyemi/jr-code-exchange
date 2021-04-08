@@ -208,3 +208,22 @@ textarea {
 .index-forum {
   margin-left: 0.5%;
 }
+
+.cursor { 
+  cursor: pointer;
+}
+
+.forum-link {
+  position: relative;
+  z-index: 1;
+  padding: inherit;
+}
+
+/* Forum Details */
+.forum-detail {
+  border: 1px solid transparent;
+}
+
+.forum-detail:hover{
+  border: 1px solid #FFF;
+}

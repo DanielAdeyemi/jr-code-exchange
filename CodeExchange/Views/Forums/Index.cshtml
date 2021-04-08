@@ -9,11 +9,13 @@
 <div class="columns is-multiline index-forum">
   @foreach(Forum forum in Model)
   {
-    <div class=" column is-one-quarter notification top-index mr-1 ml-1">
-      <div class="forum-index"> 
-        <p class="is-inline-block forum-name has-text-light forum-title">@Html.ActionLink($"{@forum.Name}", "Details", new { id = forum.ForumId })</p>
-        <p class="is-inline-block ml-2 has-text-light">@forum.ForumFollowers.Count<i class='bx bx-game ml-1 color-3'></i></p>
-      </div>
+    <div class=" column is-one-quarter notification top-index mr-1 ml-1 cursor">
+      <a href="/Forums/Details/@forum.ForumId" class="forum-link">
+        <div class="forum-index"> 
+          <p class="is-inline-block forum-name has-text-light forum-title">@forum.Name</p>
+          <p class="is-inline-block ml-2 has-text-light">@forum.ForumFollowers.Count<i class='bx bx-game ml-1 color-3'></i></p>
+        </div>
+      </a>
     </div>
   }
 </div>
