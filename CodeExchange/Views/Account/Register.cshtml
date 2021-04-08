@@ -6,36 +6,31 @@
 
 @model RegisterViewModel
 
-<h2 class="has-text-light is-size-3">Register</h2>
+<h2 class="has-text-light">Register</h2>
 <hr />
 @if(ViewBag.count > 0)
 {
   <p> Username or Email is unavailable. Please try again with a different username or email! </p>
 }
-<div class="columns is-centered mt-6">
-  <div class="column is-half">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
-    {
-        @Html.LabelFor(user=> user.Email, new { @class="has-text-white is-4"})
-        @Html.TextBoxFor(user=> user.Email, new { @class="input mb-2", @required="required", @placeholder="Email"})
+<div class="field is-horizontal">
+  @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+  {
+      @Html.LabelFor(user=> user.Email, new { @class="has-text-white is-4"})
+      @Html.TextBoxFor(user=> user.Email, new { @class="input mb-2", @required="required", @placeholder="Email"})
 
-        @Html.LabelFor(user=> user.Username, new { @class="has-text-white is-4"})
-        @Html.TextBoxFor(user=> user.Username, new { @class="input mb-2", @required="required", @placeholder="Name"})
+      @Html.LabelFor(user=> user.Username, new { @class="has-text-white is-4"})
+      @Html.TextBoxFor(user=> user.Username, new { @class="input mb-2", @required="required", @placeholder="Name"})
 
-        @Html.LabelFor(user=> user.Password, new { @class="has-text-white is-4"})
-        @Html.PasswordFor(user=> user.Password, new { @class="input mb-2", @required="required", @placeholder="Password"})
+      @Html.LabelFor(user=> user.Password, new { @class="has-text-white is-4"})
+      @Html.PasswordFor(user=> user.Password, new { @class="input mb-2", @required="required", @placeholder="Password"})
 
-        @Html.LabelFor(user=> user.ConfirmPassword, new { @class="has-text-white is-4"})
-        @Html.PasswordFor(user=> user.ConfirmPassword, new { @class="input mb-2", @required="required", @placeholder="Confirm Password"})
+      @Html.LabelFor(user=> user.ConfirmPassword, new { @class="has-text-white is-4"})
+      @Html.PasswordFor(user=> user.ConfirmPassword, new { @class="input mb-2", @required="required", @placeholder="Confirm Password"})
 
-        <input type="submit" value="Register" class="button is-success submit-btns" />
-    }
-  </div>
+      <input type="submit" value="Register" class="button is-success" />
+  }
+    <button class="button is-primary register-btns">@Html.ActionLink("Login", "Login")</button>
+    <button class="button is-primary register-btns">@Html.ActionLink("Back - Home", "Index", "Home")</button>
 </div>
-
-
-    <button class="button is-primary account-btns">@Html.ActionLink("Login", "Login")</button>
-    <button class="button is-primary account-btns">@Html.ActionLink("Back - Home", "Index", "Home")</button>
-
 
 

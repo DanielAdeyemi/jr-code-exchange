@@ -6,22 +6,18 @@
 
 @model LoginViewModel
 
-<h2 class="has-text-light is-size-3">Log in with your account</h2>
+<h2>Log in with your account</h2>
 <hr />
-<div class="columns is-centered mt-6">
-  <div class="column is-half">
-    @using (Html.BeginForm())
-    {
-        @Html.LabelFor(m => m.Username, new {@class="has-text-light"})
-        @Html.TextBoxFor(m => m.Username, new {@class="input mb-2", @placeholder="Name", @required="required"})
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Username)
+    @Html.TextBoxFor(m => m.Username, new {@required="required"})
 
-        @Html.LabelFor(m => m.Password, new{@class="has-text-light"})
-        @Html.PasswordFor(m => m.Password, new {@class="input mb-2", @placeholder="password", @required="required"})
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password, new {@required="required"})
 
-        <input type="submit" value="Log in" class="button is-success submit-btns" />
-    }
-  </div>
-</div>
+    <input type="submit" value="Log in" class="btn btn-success" />
+}
 
-<button class="button is-primary account-btns">@Html.ActionLink("Create an Account", "Register", "Account")</button>
-<button class="button is-primary account-btns">@Html.ActionLink("Back - Home", "Index", "Home")</button>
+<p>@Html.ActionLink("Create an Account", "Register", "Account")</p>
+<p>@Html.ActionLink("Back - Home", "Index", "Home")</p>

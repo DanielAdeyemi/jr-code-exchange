@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using CodeExchange.Models;
+using System;
 
 namespace CodeExchange.Controllers
 {
@@ -106,6 +107,31 @@ namespace CodeExchange.Controllers
       _db.Entry(forum).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult LikedPost(Post likedPost)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(post => post.PostId == likedPost.PostId);
+      
+      Console.WriteLine("POSTID FROM FIRSTORDEFAULT: " + thisPost.PostId);
+      Console.WriteLine("USERNAME: " + likedPost.Creator);
+      Console.WriteLine("POSTID: " + likedPost.PostId);
+      thisPost.Likes++;
+      Console.WriteLine(thisPost.Title);
+      _db.Entry(thisPost).State = EntityState.Modified;
+      _db.SaveChanges();
+      return  RedirectToAction("Details", "Forums", new { id = likedPost.CreatorId });
+    }
+
+    [HttpPost]
+    public ActionResult DisLikePost(Post disLikePost)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(post => post.PostId == disLikePost.PostId);
+      thisPost.Dislikes++;
+      _db.Entry(thisPost).State = EntityState.Modified;
+      _db.SaveChanges();
+      return  RedirectToAction("Details", "Forums", new { id = disLikePost.CreatorId });
     }
   }
 }

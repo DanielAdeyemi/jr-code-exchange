@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeExchange.Migrations
 {
     [DbContext(typeof(CodeExchangeContext))]
-    [Migration("20210408174608_newForumSeedsagain")]
-    partial class newForumSeedsagain
+    [Migration("20210408180428_UpdateForumSeed")]
+    partial class UpdateForumSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -177,31 +177,157 @@ namespace CodeExchange.Migrations
                         {
                             ForumId = 1,
                             IsVisible = false,
-                            Name = "Java Sukz"
+                            Name = "Strata"
                         },
                         new
                         {
                             ForumId = 2,
                             IsVisible = false,
-                            Name = "Python Rulez"
+                            Name = "C#"
                         },
                         new
                         {
                             ForumId = 3,
                             IsVisible = false,
-                            Name = "Pyt Rules"
+                            Name = "Python"
                         },
                         new
                         {
                             ForumId = 4,
                             IsVisible = false,
-                            Name = "Pyhon Rules"
+                            Name = "Ruby"
                         },
                         new
                         {
                             ForumId = 5,
                             IsVisible = false,
-                            Name = "thon Rules"
+                            Name = "Java"
+                        },
+                        new
+                        {
+                            ForumId = 6,
+                            IsVisible = false,
+                            Name = "C#"
+                        },
+                        new
+                        {
+                            ForumId = 7,
+                            IsVisible = false,
+                            Name = "C++"
+                        },
+                        new
+                        {
+                            ForumId = 8,
+                            IsVisible = false,
+                            Name = "CSS"
+                        },
+                        new
+                        {
+                            ForumId = 10,
+                            IsVisible = false,
+                            Name = "C"
+                        },
+                        new
+                        {
+                            ForumId = 11,
+                            IsVisible = false,
+                            Name = "Assembly"
+                        },
+                        new
+                        {
+                            ForumId = 12,
+                            IsVisible = false,
+                            Name = "COBOL"
+                        },
+                        new
+                        {
+                            ForumId = 13,
+                            IsVisible = false,
+                            Name = "F#"
+                        },
+                        new
+                        {
+                            ForumId = 14,
+                            IsVisible = false,
+                            Name = "Go"
+                        },
+                        new
+                        {
+                            ForumId = 15,
+                            IsVisible = false,
+                            Name = "MySQL"
+                        },
+                        new
+                        {
+                            ForumId = 16,
+                            IsVisible = false,
+                            Name = "Objective-C"
+                        },
+                        new
+                        {
+                            ForumId = 17,
+                            IsVisible = false,
+                            Name = "Swift"
+                        },
+                        new
+                        {
+                            ForumId = 18,
+                            IsVisible = false,
+                            Name = "SQL"
+                        },
+                        new
+                        {
+                            ForumId = 19,
+                            IsVisible = false,
+                            Name = "SQL Lite"
+                        },
+                        new
+                        {
+                            ForumId = 20,
+                            IsVisible = false,
+                            Name = "Visual Basic"
+                        },
+                        new
+                        {
+                            ForumId = 21,
+                            IsVisible = false,
+                            Name = "XML"
+                        },
+                        new
+                        {
+                            ForumId = 22,
+                            IsVisible = false,
+                            Name = "HTML"
+                        },
+                        new
+                        {
+                            ForumId = 23,
+                            IsVisible = false,
+                            Name = "BASH"
+                        },
+                        new
+                        {
+                            ForumId = 24,
+                            IsVisible = false,
+                            Name = "PowerShell"
+                        },
+                        new
+                        {
+                            ForumId = 25,
+                            IsVisible = false,
+                            Name = "JavaScript"
+                        },
+                        new
+                        {
+                            ForumId = 26,
+                            IsVisible = false,
+                            Name = "Jobhunting"
+                        },
+                        new
+                        {
+                            ForumId = 27,
+                            IsVisible = false,
+                            Name = "Show Case"
                         });
                 });
 
@@ -256,68 +382,6 @@ namespace CodeExchange.Migrations
                     b.HasIndex("PostId1");
 
                     b.ToTable("Posts");
-
-                    b.HasData(
-                        new
-                        {
-                            PostId = 1,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            CreationDate = new DateTime(2021, 4, 8, 15, 46, 7, 573, DateTimeKind.Local).AddTicks(1294),
-                            Creator = "Uncle Daniel",
-                            CreatorId = 1,
-                            Dislikes = 0,
-                            IsVisible = true,
-                            Likes = 2,
-                            Title = "Python Sucks"
-                        },
-                        new
-                        {
-                            PostId = 2,
-                            Content = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure",
-                            CreationDate = new DateTime(2021, 4, 8, 10, 46, 7, 573, DateTimeKind.Local).AddTicks(1731),
-                            Creator = "Uncle Tien",
-                            CreatorId = 2,
-                            Dislikes = 0,
-                            IsVisible = true,
-                            Likes = 100,
-                            Title = "Swift Sucks"
-                        },
-                        new
-                        {
-                            PostId = 3,
-                            Content = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.",
-                            CreationDate = new DateTime(2021, 4, 8, 10, 46, 7, 573, DateTimeKind.Local).AddTicks(1738),
-                            Creator = "Uncle Mikey",
-                            CreatorId = 3,
-                            Dislikes = 0,
-                            IsVisible = true,
-                            Likes = 3,
-                            Title = "C# Sucks"
-                        },
-                        new
-                        {
-                            PostId = 4,
-                            Content = "Here's a post",
-                            CreationDate = new DateTime(2021, 4, 8, 10, 46, 7, 573, DateTimeKind.Local).AddTicks(1744),
-                            Creator = "John",
-                            CreatorId = 4,
-                            Dislikes = 0,
-                            IsVisible = true,
-                            Likes = 9,
-                            Title = "Java Sucks"
-                        },
-                        new
-                        {
-                            PostId = 5,
-                            Content = "I would upload an image here if I had that functionality",
-                            CreationDate = new DateTime(2021, 4, 8, 10, 46, 7, 573, DateTimeKind.Local).AddTicks(1750),
-                            Creator = "Lol2",
-                            CreatorId = 1,
-                            Dislikes = 10,
-                            IsVisible = true,
-                            Likes = 0,
-                            Title = "JavaScript Sucks"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

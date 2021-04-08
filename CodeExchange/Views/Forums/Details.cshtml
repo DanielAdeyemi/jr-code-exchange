@@ -1,3 +1,4 @@
+  
 @{
   Layout = "_Layout";
 }
@@ -5,24 +6,43 @@
 @using CodeExchange.Models;
 @using System.Security.Claims
 
-<h1 class="has-text-light is-size-1 has-text-centered"> @Model.Name </h1>
-<hr>
+<h1> @Model.Name </h1>
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <h1 class="has-text-light is-size-4"> No Post(s) </h1>
+  <h1> No Post(s) </h1>
 }
 else
 {
   @foreach(var join in Model.JoinEntities)
   {
-    <div class="tile cursor hover forum-detail">
+    <div class="tile">
       <article class="tile is-vertical notification">
 
+        @using (Html.BeginForm("LikedPost", "Forums"))
+        {
+          @* @Html.Hidden(post); *@
+          <input type="hidden" name="PostId" value=@join.Post.PostId></input>
+          <input type="hidden" name="Creator" value=@User.Identity.Name></input>
+          <input type="hidden" name="CreatorId" value=@Model.ForumId></input>
+
+          <input type="submit" class="far fa-hand-point-up has-text-primary hover-grow" value="&#xf0a6; @join.Post.Likes" />
+
+        }
+        @using (Html.BeginForm("DisLikePost", "Forums"))
+        {
+          @* @Html.Hidden(post); *@
+          <input type="hidden" name="PostId" value=@join.Post.PostId></input>
+          <input type="hidden" name="Creator" value=@User.Identity.Name></input>
+          <input type="hidden" name="CreatorId" value=@Model.ForumId></input>
+
+          <input type="submit" class="fas fa-poo has-text-primary hover-grow" value="&#xf2fe; @join.Post.Dislikes" />
+
+        }
         <a href ='/Posts/Details/@join.Post.PostId'>
           <div class="container-div">
-            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @join.Post.Likes</p>
-            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @join.Post.Dislikes</p>
+            <!-- <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="far fa-hand-point-up has-text-primary hover-grow"></i> @join.Post.Likes</p>
+            <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class="fas fa-poo has-text-primary hover-grow"></i> @join.Post.Dislikes</p> -->
             <p class="subtitle has-text-light is-inline-block mr-3 mb-4 top-p"><i class='bx bx-time has-text-primary'></i> @join.Post.Age()</p>
             <p class="subtitle has-text-light is-inline-block right"><span class="color-3">@join.Post.Creator</span></p> 
           </div>
@@ -35,4 +55,4 @@ else
   }
 }
 
-<button class="button is-primary submit-btns">@Html.ActionLink("Create a new Post", "Create", "Posts", new { forumId = @Model.ForumId })</button>
+<p>@Html.ActionLink("Create a new Post", "Create", "Posts", new { forumId = @Model.ForumId })</p>
