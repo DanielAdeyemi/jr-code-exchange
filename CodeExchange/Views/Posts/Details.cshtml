@@ -15,10 +15,10 @@
         }
       }
     </li>
-    <li class="is-primary"><a href="#" aria-current="page">@Model.Title</a></li>
+    <li><a href="#" aria-current="page">@Model.Title</a></li>
   </ul>
 </nav>
-<div class="tile">
+<div class="tile post-tile">
       <article class="tile is-vertical notification">
 
           <div class="container-div">
@@ -39,13 +39,13 @@
   <input type="hidden" name="PostId" value=@Model.PostId></input>
 
   <!-- @Html.TextAreaFor(model => model.Content, new {@rows="5", @cols="100", @placeholder="Describe yourself here..."}); -->
-  <textarea cols="100" id="Content" name="Content" rows="5" required></textarea>
-  <input type="submit" value="Submit Comment" />
+  <textarea cols="100" id="Content" name="Content" rows="5" required placeholder="Comments..."></textarea>
+  <input type="submit" value="Submit Comment" class="button is-success ml-5 comment-submit" />
 }
 
 @if(Model.Comments.Count == 0)
 {
-  <h2> No Available Comment(s) </h2>
+  <h2 class="color-3"> No Comment(s) yet</h2>
 }
 else
 {
