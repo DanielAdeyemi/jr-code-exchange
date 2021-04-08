@@ -47,7 +47,10 @@ namespace CodeExchange.Models
       builder.Entity<Forum>()
       .HasData(
         new Forum { ForumId = 1, Name = "Java Sukz"},
-        new Forum { ForumId = 2, Name = "Python Rules"}
+        new Forum { ForumId = 2, Name = "Python Rulez"},
+        new Forum { ForumId = 3, Name = "Pyt Rules"},
+        new Forum { ForumId = 4, Name = "Pyhon Rules"},
+        new Forum { ForumId = 5, Name = "thon Rules"}
       );
     }
   }

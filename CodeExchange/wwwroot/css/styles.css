@@ -177,3 +177,34 @@ textarea {
   margin-bottom: 2%;
 }
 
+/* Forum Index styling */
+.forum-index:hover{
+  transform: none;
+}
+
+.forum-index{
+  text-align: center;
+  font-size: 1.2em;
+  border: 1px solid transparent;
+}
+
+.top-index{
+  margin-top: 5%;
+  padding: 2% 3%;
+}
+
+.top-index:hover{
+  border: 1px solid #FFF;
+}
+
+.column.is-one-quarter {
+  width: 24%;
+}
+
+.index-main {
+  margin-left: 22%;
+}
+
+.index-forum {
+  margin-left: 0.5%;
+}
